@@ -4,11 +4,13 @@
 
 <br>
 
-# Habilidades utilizadas
+# Habilidades principales utilizadas
 - Injección SQL.
 - Descifrado de hashes.
 - Abuso de opción web de subida de archivos.
 - Abuso de privilegios de sudo.
+
+<br>
 
 # Enumeración
 Iniciamos nuestra fase de enumeración realizando un ping a la máquina. 
