@@ -81,9 +81,13 @@ Antes de saltar a revisar el panel de administración, seguimos enumerando la we
     <img src="imagenes/usage_3.png" alt="usage_3" width="500"  />
 </p>
 
-Capturamos la petición mediante Burpsuite.
+# Análisis de vulnerabilidades
+
+Repetimos la operación, pero esta vez capturamos la petición mediante Burpsuite.
 <p align="left">
     <img src="imagenes/usage_4.png" alt="usage_4" width="500"  />
 </p>
+
+Almacenamos el contenido de la petición en un fichero llamado request.txt. Posteriormente le pasaremos el fichero de la petición a SQLMap para intentar explotar la vulnerabilidad de Injección de SQL.
 
 
