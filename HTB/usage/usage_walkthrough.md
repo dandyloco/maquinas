@@ -336,7 +336,7 @@ drwxrwxrwx  4 root xander 4096 Apr  3  2024 html
 xander@usage:~$ 
 ```
 
-Ejecutaremos los siguientes comandos, para intentar obtener la id_rsa del usuario root
+Ejecutaremos los siguientes comandos, siguiendo los pasos descritos en Hacktricks, para intentar obtener la id_rsa del usuario root.
 ```bash
 xander@usage:~$ cd /var/www/html/
 xander@usage:~$ touch @id_rsa
