@@ -213,6 +213,11 @@ dash@usage:/var/www/html/project_admin/public/uploads/images$
 ```
 <br>
 
+> [!WARNING]
+> Es importante que todo el proceso de subida de la imagen, su manipulación con Burpsuite y la ejecución remota de comandos lo hagamos con cierta rapidez. Parece que hay un proceso interno de la máquina que elimina el archivo subido, teniendo que empezar de nuevo el proceso.
+
+<br>
+
 # Movimiento lateral
 Una vez realizada el tratamiento de la TTY para trabaja más comodamente, revisamos los puertos en escucha que tiene la máquina.
 ```bash
