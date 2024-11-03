@@ -232,7 +232,7 @@ tcp6       0      0 :::22                   :::*                    LISTEN      
 ```
 
 El puerto TCP/2812 nos llama la atención. Una búsqueda en Internet nos revela que se trata de monit, que es un sistema de monitorización. 
-En la propia documentación de [monit](https://mmonit.com/monit/documentation/monit.html) podemos leer que el fichero de configuración de la aplicación, por defecto, se encuentra en el directorio del trabajo del usuario que lo ejecuta. El comando lsof nos puede ayudar a saber con qué usuario se ejecuta el programa. Descubrimos que es el usuaroi dash.
+En la propia documentación de [monit](https://mmonit.com/monit/documentation/monit.html) podemos leer que el fichero de configuración de la aplicación, por defecto, se encuentra en el directorio del trabajo del usuario que lo ejecuta. El comando lsof nos puede ayudar a saber con qué usuario se ejecuta el programa. Como podemos ver, parece que es el usuario dash.
 ```bash
 dash@usage:/var/www/html/project_admin/public/uploads/images$ lsof -i:2812
 COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
