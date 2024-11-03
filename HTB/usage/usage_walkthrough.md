@@ -27,7 +27,7 @@ rtt min/avg/max/mdev = 49.110/49.110/49.110/0.000 ms
 
 <br>
 
-Lanzamos NMAP para descubrir los servicios y versión que la máquina auditada tiene expuestos.
+Ejecutamos la utilidad NMAP para descubrir los servicios y su versión que la máquina auditada tiene expuestos.
 
 ```bash
 Nmap scan report for 10.10.11.18
