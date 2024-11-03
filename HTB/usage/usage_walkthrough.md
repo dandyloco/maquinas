@@ -46,7 +46,18 @@ PORT   STATE SERVICE REASON         VERSION
 |_http-title: Did not follow redirect to http://usage.htb/
 |_http-server-header: nginx/1.18.0 (Ubuntu)
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+```
+
+Vemos que la petición web a la dirección http://10.10.11.18 intenta hacer una redirección hacia http://usage.htb. Para que nuestra máquina de atacante pueda resolverla, añadimos la entrada en nuestro fichero /etc/hosts.
 ```bash
+127.0.0.1       localhost
+127.0.1.1       kali
 
+10.10.11.18 usage.htb                
 
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
 
