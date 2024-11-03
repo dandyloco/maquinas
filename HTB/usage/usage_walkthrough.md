@@ -90,7 +90,7 @@ Repetimos la operación, pero esta vez capturamos la petición mediante Burpsuit
     <img src="imagenes/usage_4.png" alt="usage_4" width="500"  />
 </p>
 
-Almacenamos el contenido de la petición en un fichero llamado request.txt. Posteriormente le pasaremos el fichero de la petición a SQLMap para intentar explotar la vulnerabilidad de Injección de SQL.
+Almacenamos el contenido de la petición en un fichero llamado request.txt. Posteriormente le pasaremos el fichero de la petición a SQLMap para intentar explotar la vulnerabilidad de Injección de SQL. Añadimos la opción -p para indicar el campo que queremos que intente la injección.
 ```bash
 # sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch
 <omitido>
