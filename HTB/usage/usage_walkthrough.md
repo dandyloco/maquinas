@@ -303,7 +303,7 @@ User xander may run the following commands on usage:
 xander@usage:~$
 ```
 
-Lo ejecutamos para ver de qué se trata.
+Lo ejecutamos para ver de qué se trata y cómo funciona.
 ```bash
 xander@usage:~$ sudo /usr/bin/usage_management
 Choose an option:
