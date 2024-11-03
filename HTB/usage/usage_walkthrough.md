@@ -192,7 +192,7 @@ Volviendo a nuestro navegador web, veremos que ha subido el fichero correctament
     <img src="imagenes/usage_6.png" alt="usage_6" width="500"  />
 </p>
 
-Realizamos una prueba de concepto, intentando ejecutar el comando id, y vemos que obteneroms el resultado esperado.
+Realizamos una prueba de concepto, intentando ejecutar el comando id, y vemos que obtenemos una ejecución remota de comandos.
 <p align="left">
     <img src="imagenes/usage_8.png" alt="usage_8" width="500"  />
 </p>
