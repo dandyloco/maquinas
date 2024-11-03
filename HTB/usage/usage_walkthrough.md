@@ -241,6 +241,7 @@ monit   5699 dash    5u  IPv4 202937      0t0  TCP localhost:2812 (LISTEN)
 
 Nos dirigimos al directorio del usuario y listamos su contenido. Efectivamente, encontramos el fichero .monitrc.
 ```bash
+dash@usage:~$ cd /home/dash
 dash@usage:~$ ls -la
 total 52
 drwxr-x--- 6 dash dash 4096 Nov  3 12:04 .
