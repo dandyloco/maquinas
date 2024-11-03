@@ -81,4 +81,9 @@ Antes de saltar a revisar el panel de administración, seguimos enumerando la we
     <img src="imagenes/usage_3.png" alt="usage_3" width="500"  />
 </p>
 
+Capturamos la petición mediante Burpsuite.
+<p align="left">
+    <img src="imagenes/usage_4.png" alt="usage_4" width="500"  />
+</p>
+
 
