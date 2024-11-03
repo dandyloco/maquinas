@@ -7,7 +7,7 @@
 - Injección SQL.
 - Descifrado de hashes.
 - Abuso de subida de archivos.
-- Búsqueda de credenciales
+- Búsqueda de credenciales.
 - Abuso de privilegios de sudo.
 <br>
 
