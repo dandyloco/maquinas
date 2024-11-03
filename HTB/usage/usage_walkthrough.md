@@ -65,5 +65,14 @@ Abrimos la página web con nuestro navegador. Vemos que hay un enlace hacia http
     <img src="imagenes/usage_1.png" alt="usage_1" width="500"  />
 </p>
 
+Volvemos a modificar nuestro fichero /etc/hosts para contemplar este nuevo FQDN.
+```bash
+127.0.0.1       localhost
+127.0.1.1       kali
+
+10.10.11.18 usage.htb admin.usage.htb
+```
+
+
 
 
