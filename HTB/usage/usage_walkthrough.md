@@ -73,6 +73,7 @@ Volvemos a modificar nuestro fichero /etc/hosts para contemplar este nuevo FQDN.
 10.10.11.18 usage.htb admin.usage.htb
 ```
 
+Antes de saltar a revisar el panel de administración, seguimos enumerando la web principal. Vemos hay un enlace que lleva a http://usage.htb/forget-password. Esta web, parece que habilita al usuario la posibilidad de resetear su propia contraseña, enviando un correo electrónico a la cuenta de correo que el usuario tiene asociada. intentamos realizar una injección de SQL simple, añadiendo una ' al campo de correo electrónico. Vemos que la web muestra un error 500 como respuesta a la petición enviada.
 
 
 
