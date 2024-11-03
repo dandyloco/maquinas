@@ -281,7 +281,7 @@ dash:x:1000:1000:dash:/home/dash:/bin/bash
 xander:x:1001:1001::/home/xander:/bin/bash
 ```
 
-Probamos si se ha reutilizado la contraseña encontrada en el fichero .monitrc, consiguiendo realizar un movimiento lateral.
+Probamos si se ha reutilizado la contraseña encontrada en el fichero .monitrc, con el usuario xander, consiguiendo realizar un movimiento lateral.
 ```bash
 dash@usage:~$ su xander
 Password: 
