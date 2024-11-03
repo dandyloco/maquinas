@@ -1,1 +1,1 @@
-![portada_mongo](imagenes/Usage.png)
+<img src="imagenes/Usage.png" alt="Usage" width="200"/>
