@@ -7,7 +7,7 @@
 # Habilidades principales utilizadas
 - Injección SQL.
 - Descifrado de hashes.
-- Abuso de opción web de subida de archivos.
+- Abuso de subida de archivos.
 - Abuso de privilegios de sudo.
 
 <br>
