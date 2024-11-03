@@ -182,15 +182,17 @@ Ahora que tenemos el usuario (admin) y la contraseña (whatever1), comprobaremos
 
 Revisando la información del dashboard, podemos observar que la aplicación usa laravel-admin 1.8.18. Una búsqueda en Internet sobre las vulnerabilidades de esta versión nos lleva hasta la vulnerabilidad CVE-2023-24249, la cual permite subir código arbitrario mediante el abuso de una panel de subida de archivos.
 
-Navegaos hasta la URL http://admin.usage.htb/admin/auth/setting. En avatar subimos una foto cualquiera, interceptando la petición con Burpsuite y modificamos el campo filename y el contenido del fichero, para incrustar un código malicioso. Una vez realizado, permitimos que continue la petición.
+Navegaos hasta la URL http://admin.usage.htb/admin/auth/setting. En el campo avatar subimos una foto cualquiera, interceptando la petición con Burpsuite, modificando el campo filename y el contenido de la petición, para incrustar un código malicioso. Una vez realizado, permitimos que continue la petición.
 <p align="left">
     <img src="imagenes/usage_7.png" alt="usage_7" width="500"  />
 </p>
 
-Volviendo a nuestro navegador web, veremos que 
+Volviendo a nuestro navegador web, veremos que ha subido el fichero correctamente, dando la posibilidad de averiguar en qué directorio web se ha almacenado si pulsamos sobre el icono que aparece en rojo en la siguiente imagen. 
 <p align="left">
     <img src="imagenes/usage_6.png" alt="usage_6" width="500"  />
 </p>
+
+
 <br>
 
 # Movimiento lateral
