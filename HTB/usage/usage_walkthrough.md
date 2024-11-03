@@ -175,7 +175,7 @@ whatever1        (?)
 <contenido omitido>
 ```
 
-Ahora que tenemos el usuario (admin) y la contraseña (whatever1), comprobaremos si son válidas para acceder al panel de administración.
+Ahora que tenemos el usuario (admin) y la contraseña (whatever1), comprobaremos si son válidas para acceder al panel de administración. Como podemos ver conseguimos ingresar en el panel.
 <p align="left">
     <img src="imagenes/usage_5.png" alt="usage_5" width="500"  />
 </p>
