@@ -219,7 +219,7 @@ dash@usage:/var/www/html/project_admin/public/uploads/images$
 <br>
 
 # Movimiento lateral
-Una vez realizada el tratamiento de la TTY para trabaja más comodamente, revisamos los puertos en escucha que tiene la máquina.
+Una vez realizada el tratamiento de la TTY para trabajar más comodamente, revisamos los puertos en escucha que tiene la máquina víctima.
 ```bash
 # netstat -putona | grep -i listen
 tcp        0      0 127.0.0.1:33060         0.0.0.0:*               LISTEN      -                    off (0.00/0/0)
