@@ -91,7 +91,7 @@ Parece que la web puede ser vulnerable a una injección SQL. Repetimos la operac
     <img src="imagenes/usage_4.png" alt="usage_4" width="500"  />
 </p>
 
-Almacenamos el contenido de la petición en un fichero llamado request.txt. Posteriormente le pasaremos el fichero de la petición a SQLMap para intentar explotar la vulnerabilidad de Injección de SQL. Añadimos la opción -p para indicar el campo que queremos que intente la injección.
+Almacenamos el contenido de la petición en un fichero llamado request.txt. Posteriormente le pasaremos el fichero de la petición a SQLMap para intentar explotar la vulnerabilidad de Injección de SQL. Con el modificador -p le estamos indicando el campo que queremos que intente la injección.
 ```bash
 # sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch
 <contenido omitido>
