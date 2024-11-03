@@ -111,6 +111,10 @@ web application technology: Nginx 1.18.0
 back-end DBMS: MySQL > 5.0.12
 <omitido>
 ```
+Ahora, enumeramos las bases de datos del servicio MYSQL. 
+```bash
+# sqlmap -r requests.txt  --level 5 --risk 3 -p email --dbs
+```
 
 
 
