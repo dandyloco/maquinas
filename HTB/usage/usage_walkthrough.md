@@ -58,7 +58,9 @@ http://usage.htb [200 OK] Bootstrap[4.1.3], Cookies[XSRF-TOKEN,laravel_session],
 > [!NOTE]
 > Laravel es un framework de código abierto para desarrollar aplicaciones y servicios web con PHP. Su filosofía es desarrollar código PHP de forma elegante y simple, evitando el "código espagueti".
 
-Abrimos la página web con nuestro navegador.
+<br>
+
+Abrimos la página web con nuestro navegador. Vemos que hay un enlace hacia http://admin.usage.htb, el cual intuimos que puede ser un portal de administración.
 <p align="left">
     <img src="imagenes/usage_1.png" alt="usage_1" width="500"  />
 </p>
