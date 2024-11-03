@@ -1,7 +1,6 @@
 <p align="center">
     <img src="imagenes/Usage.png" alt="Usage" width="400"  />
 </p>
-
 <br>
 
 # Habilidades principales utilizadas
@@ -9,7 +8,6 @@
 - Descifrado de hashes.
 - Abuso de subida de archivos.
 - Abuso de privilegios de sudo.
-
 <br>
 
 # Enumeración
@@ -24,11 +22,7 @@ PING 10.10.11.18 (10.10.11.18) 56(84) bytes of data.
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 49.110/49.110/49.110/0.000 ms
 ```
-
-<br>
-
 Ejecutamos la utilidad NMAP para descubrir los servicios y su versión que la máquina auditada tiene expuestos.
-
 ```bash
 Nmap scan report for 10.10.11.18
 Host is up, received user-set (0.043s latency).
@@ -47,7 +41,6 @@ PORT   STATE SERVICE REASON         VERSION
 |_http-server-header: nginx/1.18.0 (Ubuntu)
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
-
 Vemos que la petición web a la dirección http://10.10.11.18 intenta hacer una redirección hacia http://usage.htb. Para que nuestra máquina de atacante pueda resolverla, añadimos la entrada en nuestro fichero /etc/hosts.
 ```bash
 127.0.0.1       localhost
@@ -55,9 +48,6 @@ Vemos que la petición web a la dirección http://10.10.11.18 intenta hacer una 
 
 10.10.11.18 usage.htb                
 ```
-
-<br>
-
 Procedemos a realizar una enumeración de las tecnologías empleadas por la web. Entre otras tecnologías, el uso de Laravel parece la más relevante.
 ```bash
 # whatweb http://usage.htb 
