@@ -56,3 +56,13 @@ Vemos que la petición web a la dirección http://10.10.11.18 intenta hacer una 
 10.10.11.18 usage.htb                
 ```
 
+<br>
+
+Procedemos a realizar una enumeración de las tecnologías empleadas por la web. Entre otras tecnologías, el uso de Laravel parece la más relevante.
+```bash
+# whatweb http://usage.htb 
+http://usage.htb [200 OK] Bootstrap[4.1.3], Cookies[XSRF-TOKEN,laravel_session], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][nginx/1.18.0 (Ubuntu)], HttpOnly[laravel_session], IP[10.10.11.18], Laravel, PasswordField[password], Title[Daily Blogs], UncommonHeaders[x-content-type-options], X-Frame-Options[SAMEORIGIN], X-XSS-Protection[1; mode=block], nginx[1.18.0]
+```
+
+
+
