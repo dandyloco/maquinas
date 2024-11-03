@@ -324,7 +324,7 @@ Error changing working directory to /var/www/html
 <contenido omitido>
 ```
 
-Una búsqueda en [HackTricks](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/wildcards-spare-tricks#id-7z) nos revela una via potencial de aprovecharnos e intentar escalar privilegios.
+Una búsqueda en [HackTricks](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/wildcards-spare-tricks#id-7z) nos revela una vía potencial de aprovecharnos e intentar escalar privilegios.
 
 Revisamos los permisos de /var/www/html y vemos que todos los usuarios del sistema tienen privilegios para escribir en dicho directorio, lo cual es perfecto para nuestro intento de escalada de privilegios.
 ```bash
