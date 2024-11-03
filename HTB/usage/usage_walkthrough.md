@@ -165,7 +165,7 @@ Table: admin_users
 <br>
 
 # Explotación y acceso
-Intentamos descrifrar el hash obtenido. Para ello, lo guardamos en un fichero llamado hash.txt y usamos la utilidad John the Ripper.
+Mediante la explotación de la injección SQL, hemos obtenido un token. Vamos a intentar descrifrarlo. Para ello, lo guardamos en un fichero llamado hash.txt y usamos la utilidad John the Ripper.
 ```bash
 # john -w=/usr/share/wordlists/rockyou.txt hash.txt
 <contenido omitido>
