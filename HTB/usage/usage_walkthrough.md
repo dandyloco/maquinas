@@ -86,7 +86,7 @@ Antes de saltar a revisar el panel de administración, seguimos enumerando la we
 
 # Análisis de vulnerabilidades
 
-Repetimos la operación, pero esta vez capturamos la petición mediante Burpsuite.
+Parece que la web puede ser vulnerable a una injección SQL. Repetimos la operación, pero esta vez capturamos la petición mediante Burpsuite.
 <p align="left">
     <img src="imagenes/usage_4.png" alt="usage_4" width="500"  />
 </p>
