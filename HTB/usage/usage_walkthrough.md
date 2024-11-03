@@ -295,7 +295,7 @@ H2sfTWZeFDLGmqMhrqDdAAAACnJvb3RAdXNhZ2UBAgM= : No more files
 Scan WARNINGS: 7
 ```
 
-Ya solo nos quedaria formatear correctamente la id_rsa, ganando acceso al sistema con los máximos privilegios.
+Ya solo nos quedaria formatear correctamente la id_rsa, usándola para conectar por ssh, ganando acceso al sistema con los máximos privilegios.
 ```
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
