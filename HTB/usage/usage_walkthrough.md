@@ -23,7 +23,7 @@ PING 10.10.11.18 (10.10.11.18) 56(84) bytes of data.
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 49.110/49.110/49.110/0.000 ms
 ```
-Ejecutamos la utilidad NMAP para descubrir los servicios y su versión que la máquina auditada tiene expuestos.
+Ejecutamos la utilidad NMAP para descubrir servicios y su versión que tiene la máquina auditada expuestos.
 ```bash
 Nmap scan report for 10.10.11.18
 Host is up, received user-set (0.043s latency).
