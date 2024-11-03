@@ -13,7 +13,7 @@
 <br>
 
 # Enumeración
-Iniciamos nuestra fase de enumeración realizando un ping a la máquina. Por el TTL devuelto, podemos intuir que la máquina víctima tiene un sistema operativo basado en Linux.
+Iniciamos nuestra fase de enumeración realizando un ping a la máquina. Por el TTL devuelto, podemos intuir tiene un sistema operativo basado en Linux.
 
 ```bash
 # ping -c 1 10.10.11.18                                                                                                         
