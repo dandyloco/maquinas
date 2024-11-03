@@ -81,6 +81,8 @@ Antes de saltar a revisar el panel de administración, seguimos enumerando la we
     <img src="imagenes/usage_3.png" alt="usage_3" width="500"  />
 </p>
 
+<br>
+
 # Análisis de vulnerabilidades
 
 Repetimos la operación, pero esta vez capturamos la petición mediante Burpsuite.
